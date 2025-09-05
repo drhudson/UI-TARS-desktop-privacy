@@ -1,0 +1,33 @@
+{
+  "name": "Local Ollama Privacy Setup",
+  "description": "Privacy-first configuration using local Ollama with LLaVA vision model",
+  "settings": {
+    "vlm": {
+      "provider": "huggingface",
+      "baseUrl": "http://localhost:11434/v1",
+      "apiKey": "ollama",
+      "modelName": "llava:7b",
+      "useResponsesApi": false
+    },
+    "chat": {
+      "language": "en",
+      "maxLoop": 100,
+      "loopWaitTime": 1000
+    },
+    "operator": {
+      "searchEngine": "Google"
+    },
+    "report": {
+      "storageBaseUrl": "",
+      "utioBaseUrl": ""
+    },
+    "general": {
+      "autoUpdate": false,
+      "telemetry": false,
+      "analytics": false
+    }
+  },
+  "version": "1.0.0",
+  "privacy": true,
+  "notes": "This configuration ensures all AI processing happens locally with zero external data transmission. No telemetry or analytics are enabled."
+}

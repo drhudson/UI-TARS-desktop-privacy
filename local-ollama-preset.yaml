@@ -1,0 +1,10 @@
+language: en
+vlmProvider: Hugging Face for UI-TARS-1.5
+vlmBaseUrl: http://localhost:11434/v1
+vlmApiKey: ollama
+vlmModelName: llava:latest
+useResponsesApi: false
+maxLoop: 100
+loopWaitTime: 1000
+operator: Local Computer Operator
+searchEngine: Google

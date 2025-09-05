@@ -76,11 +76,9 @@ export class AppUpdater {
 
     this.autoUpdater = autoUpdater;
 
-    if (app.isPackaged) {
-      // Only check for updates in the packaged version!
-      this.autoUpdater.checkForUpdatesAndNotify();
-      // }
-    }
+    // Auto-updates disabled for privacy - no automatic network calls
+    // Users can manually check for updates if desired
+    logger.info('Auto-updates disabled for privacy protection');
   }
 
   async checkForUpdatesDetail() {

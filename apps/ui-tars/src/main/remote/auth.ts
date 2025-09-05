@@ -6,9 +6,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { app } from 'electron';
 // import { SignJWT, importPKCS8, generateKeyPair } from 'jose';
-import { machineId } from 'node-machine-id';
+// Machine ID removed for privacy - using session-based ID
 import { AxiosRequestConfig } from 'axios';
 import { generateKeyPairSync } from 'crypto';
+import * as crypto from 'crypto';
 import { appPrivateKeyBase64 } from './app_private';
 import { REGISTER_URL } from './shared';
 import { logger } from '../logger';
@@ -101,8 +102,9 @@ async function getAuthHeader() {
 let cachedDeviceId: string | null = null;
 async function getDeviceId(): Promise<string> {
   if (!cachedDeviceId) {
-    cachedDeviceId = await machineId();
-    logger.log('[Auth] getDeviceId:', cachedDeviceId);
+    // Privacy-friendly: Generate random session-based ID instead of hardware fingerprint
+    cachedDeviceId = 'session-' + crypto.randomUUID();
+    logger.log('[Auth] Generated session-based device ID');
   }
   return cachedDeviceId;
 }
@@ -198,6 +200,7 @@ async function getLocalPrivKey(format: 'base64' | 'origin'): Promise<string> {
 }
 
 async function registerDevice(): Promise<boolean> {
+  // Note: Device registration disabled for privacy (UI_TARS_PROXY_HOST is empty)
   const { publicKey: devicePublicKey } = await genKeyPair();
   const deviceId = await getDeviceId();
   const ts = Date.now();

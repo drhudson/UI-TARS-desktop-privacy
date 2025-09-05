@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import ChatFeed from './components/ChatFeed';
 import AnimatedButton from './components/AnimatedButton';
 import Image from 'next/image';
-import posthog from 'posthog-js';
+// Analytics removed for privacy
 
 const Tooltip = ({
   children,
@@ -66,13 +66,7 @@ export default function Home() {
       setInitialMessage(finalMessage);
       setIsChatVisible(true);
 
-      try {
-        posthog.capture('submit_message', {
-          message: finalMessage,
-        });
-      } catch (e) {
-        console.error(e);
-      }
+      // Analytics tracking removed for privacy
     },
     [setInitialMessage, setIsChatVisible],
   );

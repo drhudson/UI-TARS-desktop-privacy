@@ -6,7 +6,7 @@ import { useWindowSize } from 'usehooks-ts';
 import Image from 'next/image';
 import { useAtom } from 'jotai/react';
 import { contextIdAtom } from '../atoms';
-import posthog from 'posthog-js';
+// Analytics removed for privacy
 import XStream from '../utils/xstream';
 
 interface ChatFeedProps {
@@ -184,11 +184,7 @@ export default function ChatFeed({ initialMessage, onClose }: ChatFeedProps) {
             }
           }
 
-          posthog.capture('agent_start', {
-            goal: initialMessage,
-            sessionId: sessionData.sessionId,
-            contextId: sessionData.contextId,
-          });
+          // Analytics tracking removed for privacy
         } catch (error) {
           console.error('Session initialization error:', error);
         } finally {
